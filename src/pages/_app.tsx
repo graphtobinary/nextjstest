@@ -1,6 +1,24 @@
-import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
+import ThemeProvider from 'components/ThemeProvider';
+import Layout from 'components/Layout/Layout';
 
-export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
-}
+const MainComponent: React.FunctionComponent<AppProps> = ({
+  Component,
+  pageProps,
+}) => {
+  return (
+    <Layout {...pageProps}>
+      <Component {...pageProps} />
+    </Layout>
+  );
+};
+
+const App = (props: AppProps) => {
+  return (
+    <ThemeProvider>
+      <MainComponent {...props} />
+    </ThemeProvider>
+  );
+};
+
+export default App;
